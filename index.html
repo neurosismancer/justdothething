@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title >
+			localStorage Test
+		</title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="./calendar-base.min.js"></script>
+		<script src="./dothething.js"></script>
+
+		<style type="text/css" media="screen">
+			.completed {
+				background-color: green !important; 
+			}
+
+			.highlight {
+				outline: 3px solid yellow;
+			}
+
+			.today {
+				outline: 3px solid yellow;
+				background-color: gray;
+			}
+
+			td {
+				height: 44px;
+				width: 44px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">	
+			document.write("Your Goal is: " + localStorage.getItem("goal") + '<br />');
+			document.write('<small>Last changed on: ' + localStorage.getItem("dateGoalStart") + '</small>');
+		</script>
+		<br />
+		<br />
+		
+		<table border="1">
+		<thead>
+			<tr>
+				<td>S</td>
+				<td>M</td>
+				<td>T</td>
+				<td>W</td>
+				<td>T</td>
+				<td>F</td>
+				<td>S</td>
+			</tr>
+		</thead>
+		<tbody>
+			<script type="text/javascript">
+				genCalendar(cal);
+			</script>
+		</tbody>
+		</table>
+
+		<br/>
+
+		<p class="streak">
+		</p>
+
+		<a onclick="doTheThing()" href="javascript:void();">I did the thing today</a>
+		<br />
+		<a onclick="changeText()" href="javascript:void(0);">Change Goal.</a>
+		<br />
+		<br />
+		<br />
+		<a onclick="globalReset()" href="javascript:void(0);">RESET. EVERYTHING.</a>
+	</body>
+</html>
