@@ -39,14 +39,19 @@ var fillStreak = function(streak, streakEnd) {
 }
 
 //prints the table cell for the day in the calendar, identifying if the cell is for the current day
-var printCalDay = function(day) {
-	document.write("<td");
+var printCalDay = function(date) {
+	fullDate = date.year + "-" + (date.month + 1) + "-" + date.day;
+	document.write("<td name=\"" + fullDate + "\"");
 	
-	if (day === currDay) {
+	if (fullDate === localStorage.getItem("dateLastDone", streakDate)) {
+		document.write(" class=\"lastDone\"");
+	}
+
+	if (date.day === currDay) {
 		document.write(" class=\"today\"");
 	}
 
-	document.write(">" + day + "</td>")
+	document.write(">" + date.day + "</td>")
 }
 
 var genCalendar = function(cal) {
@@ -55,12 +60,12 @@ var genCalendar = function(cal) {
 	cal.getCalendar(currDate.getUTCFullYear(), currDate.getUTCMonth()).forEach(function (date) {
 		if (i === 0 || i % 7 === 0){
 			document.write("<tr>");
-			printCalDay(date.day);
+			printCalDay(date);
 		} else if (i+1 % 7 === 0) {
-			printCalDay(date.day);
+			printCalDay(date);
 			document.write("</tr>");
 		} else {
-			printCalDay(date.day);
+			printCalDay(date);
 		}
 		i++;
 	});
@@ -91,7 +96,7 @@ var globalReset = function() {
 var main = function() {
 	var streak = localStorage.getItem("yourStreak");
 	var streak = parseInt(streak);
-	var streakEnd = $('.today').prev();
+	var streakEnd = $('.lastDone');
 
 	if (localStorage.getItem("dateLastDone") === streakDate){
 		$('.today').addClass('completed');
