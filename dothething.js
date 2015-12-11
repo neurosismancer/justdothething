@@ -105,6 +105,26 @@ var main = function() {
 		fillStreak(streak, streakEnd);
 	}
 
+	if ($('.lastDone').attr('name') == $('.today').prev().prev().attr('name')){
+		var didYesterday = window.confirm("Hey! You missed a day! Hit okay if you did the thing yesterday!");
+
+		if (didYesterday === true) {
+			$('.lastDone').removeClass('lastDone');
+			$('.today').prev().addClass('lastDone');
+			$('.today').prev().addClass('completed');
+
+			var streakEnd = $('.lastDone').attr('name');
+			window.alert(streakEnd);
+			localStorage.setItem("dateLastDone", streakEnd);
+	
+			streak++;
+			$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
+			localStorage.setItem("yourStreak", streak.toString());
+		} else {
+			window.alert("You missed more than one day. You need to start over.")
+		};
+	}
+
 	$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
 }
 
