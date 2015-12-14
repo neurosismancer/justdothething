@@ -24,10 +24,22 @@
 				background-color: gray;
 			}
 
-			td {
+			#calendar {
+				width: 66%;
+				overflow: auto;
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			#calendar li {
+				display: block;
+				float: left;
 				height: 44px;
-				width: 44px;
+				width: 13.28%;
 				text-align: center;
+				line-height: 44px;
+				margin: 0.5%;
 			}
 		</style>
 	</head>
@@ -39,24 +51,12 @@
 		<br />
 		<br />
 		
-		<table border="1">
-		<thead>
-			<tr>
-				<td>S</td>
-				<td>M</td>
-				<td>T</td>
-				<td>W</td>
-				<td>T</td>
-				<td>F</td>
-				<td>S</td>
-			</tr>
-		</thead>
-		<tbody>
+		<ul id="calendar">
 			<script type="text/javascript">
 				genCalendar(cal);
 			</script>
-		</tbody>
-		</table>
+		</ul>
+		
 
 		<br/>
 
@@ -65,7 +65,7 @@
 
 		<a onclick="doTheThing()" href="javascript:void(0);">I did the thing today</a>
 		<br />
-		<a onclick="changeText()" href="javascript:void(0);">Change Goal.</a>
+		<a onclick="changeGoal()" href="javascript:void(0);">Change Goal.</a>
 		<br />
 		<br />
 		<br />
