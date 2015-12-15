@@ -11,6 +11,14 @@
 		<script src="./dothething.js"></script>
 
 		<style type="text/css" media="screen">
+			html, body {
+				height: 100%;
+			}
+
+			body {
+				margin-left: 51%;
+			}
+
 			.completed {
 				background-color: green !important; 
 			}
@@ -24,21 +32,29 @@
 				background-color: gray;
 			}
 
+			.siblingMonth {
+				background-color: #CCCCCC;
+			}
+
 			#calendar {
-				width: 66%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 50%;
+				height: 100%;
 				overflow: auto;
 				list-style: none;
 				padding: 0;
 				margin: 0;
+				outline: 1px solid black;
 			}
 
 			#calendar li {
-				display: block;
+				display: inline-block;
 				float: left;
-				height: 44px;
+				height: 14.28%;
 				width: 13.28%;
-				text-align: center;
-				line-height: 44px;
+				text-align: left;
 				margin: 0.5%;
 			}
 		</style>
@@ -48,18 +64,13 @@
 			document.write("Your Goal is: " + localStorage.getItem("goal") + '<br />');
 			document.write('<small>Last changed on: ' + localStorage.getItem("dateGoalStart") + '</small>');
 		</script>
-		<br />
-		<br />
 		
 		<ul id="calendar">
 			<script type="text/javascript">
 				genCalendar(cal);
 			</script>
 		</ul>
-		
-
 		<br/>
-
 		<p class="streak">
 		</p>
 
