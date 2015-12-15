@@ -82,6 +82,8 @@ var doTheThing = function() {
 	streak++;
 	$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
 	localStorage.setItem("yourStreak", streak.toString());
+
+	$('.doTheThing').html('');
 }
 
 var globalReset = function() {
