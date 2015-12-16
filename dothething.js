@@ -11,7 +11,7 @@ var changeGoal = function() {
 	var newGoal = window.prompt("Pick a Goal", "Make me.")
 	localStorage.setItem("goal", newGoal);
 	localStorage.setItem("dateGoalStart", todayDate);
-	localStorage.setItem("yourStreak", 0);
+	localStorage.setItem("yourStreak", "0");
 
 	window.location.reload();
 }
@@ -33,7 +33,6 @@ var fillStreak = function(streak, streakEnd) {
 		streakEnd.addClass('completed');
 		nextDay = streakEnd;
 		streakEnd = streakEnd.prev();
-
 	}
 }
 
@@ -86,6 +85,19 @@ var doTheThing = function() {
 	$('.doTheThing').html('');
 }
 
+var didYesterday = function() {
+	$('.lastDone').removeClass('lastDone');
+	$('.today').prev().addClass('lastDone');
+	$('.today').prev().addClass('completed');
+
+	var streakEnd = $('.lastDone').attr('name');
+	localStorage.setItem("dateLastDone", streakEnd);
+
+	streak++;
+	$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
+	localStorage.setItem("yourStreak", streak.toString());
+}
+
 var globalReset = function() {
 	localStorage.removeItem("goal");
 	localStorage.removeItem("dateGoalStart");
@@ -106,26 +118,26 @@ var startOver = function() {
 var main = function() {
 	var streak = localStorage.getItem("yourStreak");
 	var streak = parseInt(streak);
+	if (streak === null){
+		streak = 0;
+	}
+
 	var streakEnd = $('.lastDone');
+	var lastDone = localStorage.getItem("dateLastDone");
+	if (lastDone === null){
+		lastDone = "Never";
+	}
 
-	fillStreak(streak - 1, streakEnd);
+	fillStreak(streak, streakEnd);
 
-	if (streak === 1 && localStorage.getItem("dateLastDone") == $('.today').attr('name')){
+	if (localStorage.getItem("dateLastDone") == $('.today').attr('name')){
 		$('.today').addClass('completed');
+		$('.doTheThing').html('');
 	} else if ($('.lastDone').attr('name') == $('.today').prev().prev().attr('name')) {
 		var didYesterday = window.confirm("Hey! You missed a day! Hit okay if you did the thing yesterday!");
 
 		if (didYesterday === true) {
-			$('.lastDone').removeClass('lastDone');
-			$('.today').prev().addClass('lastDone');
-			$('.today').prev().addClass('completed');
-
-			var streakEnd = $('.lastDone').attr('name');
-			localStorage.setItem("dateLastDone", streakEnd);
-	
-			streak++;
-			$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
-			localStorage.setItem("yourStreak", streak.toString());
+			doYesterday();
 		} else {
 			window.alert("You missed more than one day. You need to start over.");
 			startOver();
@@ -135,9 +147,9 @@ var main = function() {
 		startOver();
 	} else {
 		//don't do nuthin'
-	};
+	}
 
-	$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
+	$('.streak').html("Your Streak is: " + streak + ' Days <br>\n<small>Last Completed: ' + lastDone + '</small>');
 }
 
 $(document).ready(main);
