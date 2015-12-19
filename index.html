@@ -23,6 +23,10 @@
 				background-color: green !important; 
 			}
 
+			.missed {
+				background-color: red !important;
+			}
+
 			.highlight {
 				outline: 3px solid yellow;
 			}
@@ -36,7 +40,7 @@
 				background-color: #CCCCCC;
 			}
 
-			#calendar {
+			.calendar {
 				position: absolute;
 				top: 0;
 				left: 0;
@@ -49,26 +53,27 @@
 				outline: 1px solid black;
 			}
 
-			#calendar li {
+			.calendar li {
 				display: inline-block;
 				float: left;
 				height: 14.28%;
 				width: 13.28%;
 				text-align: left;
 				margin: 0.5%;
+				outline: 1px solid black;
+			}
+
+			.goalStart {
+				font-size: 80%;
 			}
 		</style>
 	</head>
 	<body>
-		<script type="text/javascript">	
-			document.write("Your Goal is: " + localStorage.getItem("goal") + '<br />');
-			document.write('<small>Last changed on: ' + localStorage.getItem("dateGoalStart") + '</small>');
-		</script>
+		<p class="goalAndStreak"></p>
+		<p class="goalStart"></p>
 		
-		<ul id="calendar">
-			<script type="text/javascript">
-				genCalendar(cal);
-			</script>
+		<ul class="calendar">
+			
 		</ul>
 		<br/>
 		<p class="streak">
