@@ -3,17 +3,33 @@ var currDate = new Date();
 var currYear = currDate.getFullYear();
 var currMonth = currDate.getMonth();
 var currDay = currDate.getDate();
-var todayDate = currYear + "-" + (currMonth+1) + "-" + currDay;
+var todayDate = currYear + "-" + (currMonth + 1) + "-" + currDay;
+
+var streak = localStorage.getItem("yourStreak");
+var streak = parseInt(streak);
 
 var cal = new calendarBase.Calendar({ siblingMonths: true, weekStart: 0 });
 
 var changeGoal = function() {
+	var streakEnd = $('.lastDone');
+
+	for (i = 0; i < streak; i++){
+		streakEnd.removeClass('completed');
+		nextDay = streakEnd;
+		streakEnd = streakEnd.prev();
+	};
+
 	var newGoal = window.prompt("Pick a Goal", "Make me.")
 	localStorage.setItem("goal", newGoal);
 	localStorage.setItem("dateGoalStart", todayDate);
 	localStorage.setItem("yourStreak", "0");
+	
+	localStorage.removeItem("dateLastDone");
 
-	window.location.reload();
+	$('.goalAndStreak').text("Your Goal is: " + localStorage.getItem("goal"));
+	$('.goalStart').text('Goal started on: ' + localStorage.getItem("dateGoalStart"));
+	$('.streak').html("Your Streak is: 0 Days");
+	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">I did the thing today</a>")
 }
 
 if(typeof(Storage) !== "undefined") {
@@ -24,16 +40,6 @@ if(typeof(Storage) !== "undefined") {
 	} else {
 	// Sorry! No Web Storage support..
 		window.alert("Broken");
-}
-
-//Backfills dates on calendar for current streak
-var fillStreak = function(streak, streakEnd) {
-	for (i = 0; i < streak; i++){
-
-		streakEnd.addClass('completed');
-		nextDay = streakEnd;
-		streakEnd = streakEnd.prev();
-	}
 }
 
 //prints the table cell for the day in the calendar, identifying if the cell is for the current day
@@ -61,8 +67,6 @@ var genCalendar = function(cal) {
 }
 
 var doTheThing = function() {
-	var streak = localStorage.getItem("yourStreak");
-	var streak = parseInt(streak);
 	var streakEnd = $('.today').prev();
 
 	$('.today').addClass('completed');
@@ -91,8 +95,6 @@ var didYesterday = function() {
 }
 
 var didNotDoTheThing = function () {
-	var streak = localStorage.getItem("yourStreak");
-	var streak = parseInt(streak);
 	var streakEnd = $('.today').prev();
 
 	if ($('.today').hasClass('lastDone')){
@@ -129,6 +131,15 @@ var startOver = function() {
 	localStorage.setItem("yourStreak", "0");
 
 	window.location.reload();
+}
+
+//Backfills dates on calendar for current streak
+var fillStreak = function(streak, streakEnd) {
+	for (i = 0; i < streak; i++){
+		streakEnd.addClass('completed');
+		nextDay = streakEnd;
+		streakEnd = streakEnd.prev();
+	};
 }
 
 var main = function() {
