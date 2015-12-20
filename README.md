@@ -2,9 +2,9 @@ This is a very early WIP of a basic goal tracking app built in HTML 5 and JavaSc
 
 ##Dependencies:
 
-*[calendar-base](https://github.com/WesleydeSouza/calendar-base)
-*jQuery
-*a browser that supports Local Storage
+* [calendar-base](https://github.com/WesleydeSouza/calendar-base)
+* jQuery
+* a browser that supports Local Storage
 
 The MIT License (MIT)
 Copyright (c) 2015, Richard J. Anderson
