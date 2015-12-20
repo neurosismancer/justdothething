@@ -69,22 +69,23 @@
 		</style>
 	</head>
 	<body>
-		<p class="goalAndStreak"></p>
-		<p class="goalStart"></p>
+		<section id="information">
+			<p class="goalAndStreak"></p>
+			<p class="goalStart"></p>
+			<p class="streak"></p>
+		</section>
 		
-		<ul class="calendar">
-			
+		<ul id="actions">
+		<li class="doTheThing"><a onclick="doTheThing()" href="javascript:void(0);">I did the thing today</a></li>
+		<li><a onclick="didNotDoTheThing()" href="javascript:void(0);" class="didNotDoTheThing">I did not do the thing</a></li>
 		</ul>
-		<br/>
-		<p class="streak">
-		</p>
 
-		<a onclick="doTheThing()" href="javascript:void(0);" class="doTheThing">I did the thing today</a>
-		<br />
-		<a onclick="changeGoal()" href="javascript:void(0);">Change Goal.</a>
-		<br />
-		<br />
-		<br />
-		<a onclick="globalReset()" href="javascript:void(0);">RESET. EVERYTHING.</a>
+		<ul id="options">
+		<li><a onclick="changeGoal()" href="javascript:void(0);">Change Goal</a></li>
+		<li><a onclick="globalReset()" href="javascript:void(0);">Reset All Progress</a></li>
+		</ul>
+
+		<ul class="calendar">	
+		</ul>
 	</body>
 </html>
