@@ -1,0 +1,51 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	margin-left: 66.6%;
+}
+
+.completed {
+	background-color: green !important; 
+}
+
+.missed {
+	background-color: red !important;
+}
+
+.today {
+	outline: 3px solid yellow !important;
+	background-color: gray;
+}
+
+.siblingMonth {
+	background-color: #CCCCCC;
+}
+
+.calendar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 66%;
+	height: 100%;
+	overflow: auto;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	outline: 1px solid black;
+}
+
+.calendar li {
+	display: inline-block;
+	float: left;
+	height: 14.28%;
+	width: 13.28%;
+	text-align: left;
+	margin: 0.5%;
+	outline: 1px solid black;
+}
+
+.goalStart {
+	font-size: 80%;
+}
