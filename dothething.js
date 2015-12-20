@@ -90,6 +90,30 @@ var didYesterday = function() {
 	localStorage.setItem("yourStreak", streak.toString());
 }
 
+var didNotDoTheThing = function () {
+	var streak = localStorage.getItem("yourStreak");
+	var streak = parseInt(streak);
+	var streakEnd = $('.today').prev();
+
+	if ($('.today').hasClass('lastDone')){
+		$('.today').removeClass('lastDone');
+		$('.today').removeClass('completed');
+		$('.today').prev().addClass('lastDone');
+
+		lastDone = $('.today').prev().attr("name");
+
+		localStorage.setItem("dateLastDone", lastDone);
+
+		streak--;
+		$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
+		localStorage.setItem("yourStreak", streak.toString());
+
+		$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">I did the thing today</a>")
+	} else {
+		alert("You have until midnight to do the thing.")
+	}
+}
+
 var globalReset = function() {
 	localStorage.removeItem("goal");
 	localStorage.removeItem("dateGoalStart");
