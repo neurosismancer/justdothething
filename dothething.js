@@ -123,7 +123,7 @@ var main = function() {
 	}
 
 	$('.goalAndStreak').text("Your Goal is: " + localStorage.getItem("goal"));
-	$('.goalStart').text('Last changed on: ' + localStorage.getItem("dateGoalStart"));
+	$('.goalStart').text('Goal started on: ' + localStorage.getItem("dateGoalStart"));
 	$('.streak').html("Your Streak is: " + streak + ' Days <br>\n<small>Last Completed: ' + lastDone + '</small>');
 
 	fillStreak(streak, streakEnd);
