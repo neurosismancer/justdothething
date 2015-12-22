@@ -145,6 +145,11 @@ function clearStreak(){
 	};
 }
 
+function popovertest() {
+	$('.fadeOver').fadeToggle(200);
+	$('.popOver').fadeToggle(200);
+}
+
 var main = function() {
 	if(typeof(Storage) !== "undefined") {
 	// Code for localStorage/sessionStorage.
