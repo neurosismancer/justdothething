@@ -116,9 +116,10 @@ function globalReset() {
 function startOver() {
 	localStorage.removeItem("dateLastDone");
 	localStorage.setItem("yourStreak", "0");
-	streak = 0;
 
 	clearStreak();
+
+	streak = 0;
 
 	$('.streak').html("Your Streak is: 0 Days");
 	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">I did the thing today</a>")
@@ -134,9 +135,10 @@ function fillStreak(streak, streakEnd) {
 }
 
 function clearStreak(){
+
 	var streakEnd = $('.lastDone');
 
-	for (i = 0; i < streak; i++){
+	for (i = 0; i <= streak; i++){
 		streakEnd.removeClass('completed');
 		nextDay = streakEnd;
 		streakEnd = streakEnd.prev();
