@@ -65,7 +65,7 @@ function doTheThing() {
 	$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
 	localStorage.setItem("yourStreak", streak.toString());
 
-	$('.doTheThing').html('');
+	$('.doTheThing').hide();
 }
 
 function didYesterday() {
@@ -85,25 +85,32 @@ function didYesterday() {
 function didNotDoTheThing() {
 	var streakEnd = $('.today').prev();
 
-	if ($('.today').hasClass('lastDone')){
-		$('.today').removeClass('lastDone');
-		$('.today').removeClass('completed');
-		$('.today').prev().addClass('lastDone');
-
-		lastDone = $('.today').prev().attr("name");
-
-		localStorage.setItem("dateLastDone", lastDone);
-
-		streak--;
-		$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
-		localStorage.setItem("yourStreak", streak.toString());
-
-		$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">I did the thing today</a>")
+	if ($('#doOrDoNot').children('.stillTime').length){
+		startOver();
+		$('.stillTime').remove();
 	} else {
-		alert("You have until midnight to do the thing.")
+		if ($('.today').hasClass('lastDone')){
+			$('.today').removeClass('lastDone');
+			$('.today').removeClass('completed');
+			$('.today').prev().addClass('lastDone');
+
+			lastDone = $('.today').prev().attr("name");
+
+			localStorage.setItem("dateLastDone", lastDone);
+
+			streak--;
+			$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
+			localStorage.setItem("yourStreak", streak.toString());
+
+			$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">I did the thing today</a>")
+
+		} else {
+			$('#doOrDoNot').prepend('<p class=\"stillTime\">Are you sure? You have until midnight. It\'s not too late!</p>');
+		}
 	}
 }
 
+//resets everything, and forces you to pick a new goal
 function globalReset() {
 	localStorage.removeItem("goal");
 	localStorage.removeItem("dateGoalStart");
@@ -113,6 +120,7 @@ function globalReset() {
 	changeGoal();
 }
 
+//Resets streak progress, but keeps the goal
 function startOver() {
 	localStorage.removeItem("dateLastDone");
 	localStorage.setItem("yourStreak", "0");
@@ -134,8 +142,8 @@ function fillStreak(streak, streakEnd) {
 	};
 }
 
+//Clears the streak on the calendar
 function clearStreak(){
-
 	var streakEnd = $('.lastDone');
 
 	for (i = 0; i <= streak; i++){
@@ -145,7 +153,7 @@ function clearStreak(){
 	};
 }
 
-function popovertest() {
+function popUp(which) {
 	$('.fadeOver').fadeToggle(200);
 	$('.popOver').fadeToggle(200);
 }
@@ -183,7 +191,7 @@ var main = function() {
 
 	if (localStorage.getItem("dateLastDone") == $('.today').attr('name')){
 		$('.today').addClass('completed');
-		$('.doTheThing').html('');
+		$('.doTheThing').hide();
 	} else if ($('.lastDone').attr('name') == $('.today').prev().prev().attr('name')) {
 		$('.today').prev().addClass('missed');
 
