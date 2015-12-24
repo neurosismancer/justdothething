@@ -56,7 +56,7 @@ function printCalDay(date) {
 
 function doTheThing() {
 	var streakEnd = $('.today').prev();
-
+	$('.today').removeClass('missed');
 	$('.today').addClass('completed');
 	$('.today').addClass('lastDone');
 	localStorage.setItem("dateLastDone", todayDate);
@@ -89,6 +89,7 @@ function didNotDoTheThing() {
 		startOver();
 		$('.stillTime').remove();
 	} else {
+		$('.today').addClass('missed');
 		if ($('.today').hasClass('lastDone')){
 			$('.today').removeClass('lastDone');
 			$('.today').removeClass('completed');
@@ -102,7 +103,7 @@ function didNotDoTheThing() {
 			$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
 			localStorage.setItem("yourStreak", streak.toString());
 
-			$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">I did the thing today</a>")
+			$('.doTheThing').show();
 
 		} else {
 			$('#doOrDoNot').prepend('<p class=\"stillTime\">Are you sure? You have until midnight. It\'s not too late!</p>');
