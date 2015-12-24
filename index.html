@@ -13,26 +13,33 @@
 		<link rel="stylesheet" href="styles.css" type="text/css">
 	</head>
 	<body>
+		<h1>Just Do The Thing</h1>
 		<section id="information">
-			<p class="goalAndStreak"></p>
-			<p class="goalStart"></p>
 			<p class="streak"></p>
 		</section>
 		
-		<ul id="actions">
-		<li class="doTheThing"><a onclick="doTheThing()" href="javascript:void(0);">I did the thing today</a></li>
-		<li><a onclick="didNotDoTheThing()" href="javascript:void(0);" class="didNotDoTheThing">I did not do the thing</a></li>
-		</ul>
+		<section id="progress">
+			<h2 class="goalAndStreak"></h2>
+			<h3 class="goalStart"></h3>
+			<ul class="calendar">
+			</ul>	
+		</section>
 
-		<ul id="options">
-		<li><a onclick="changeGoal()" href="javascript:void(0);">Change Goal</a></li>
-		<li><a onclick="globalReset()" href="javascript:void(0);">Reset All Progress</a></li>
-		</ul>
+		<section id="doOrDoNot">
+			<ul id="actions">
+				<li class="doTheThing"><a onclick="doTheThing()" href="javascript:void(0);">I did the thing today</a></li>
+				<li><a onclick="didNotDoTheThing()" href="javascript:void(0);" class="didNotDoTheThing">I did not do the thing</a></li>
+			</ul>
+		</section>
 
+		<section>
+			<ul id="options">
+				<li><a onclick="changeGoal()" href="javascript:void(0);">Change Goal</a></li>
+				<li><a onclick="globalReset()" href="javascript:void(0);">Reset All Progress</a></li>
+			</ul>
+		</section>
+		
 		<!--<a onclick="popovertest()" href="javascript:void(0);">Pop Up Test.<a>-->
-
-		<ul class="calendar">	
-		</ul>
 
 		<!--<div class="fadeOver">
 		</div>
