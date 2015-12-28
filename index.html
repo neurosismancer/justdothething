@@ -32,9 +32,14 @@
 			</ul>
 		</section>
 
+		<section id="setup">
+			<input class="newGoal" type="text" length="255" value="Accomplish Wonders.">
+			<button type="" onclick="changeGoal()">Set New Goal</button>
+		</section>
+
 		<section>
 			<ul id="options">
-				<li><a onclick="changeGoal()" href="javascript:void(0);">Change Goal</a></li>
+				<li><a onclick="setup()" href="javascript:void(0);" class="changeGoal">Change Goal</a></li>
 				<li><a onclick="globalReset()" href="javascript:void(0);">Reset All Progress</a></li>
 			</ul>
 		</section>

@@ -13,7 +13,7 @@ var cal = new calendarBase.Calendar({ siblingMonths: true, weekStart: 0 });
 function changeGoal() {
 	clearStreak();
 
-	var newGoal = window.prompt("Pick a Goal", "Make me.")
+	var newGoal = $('.newGoal').val()
 	localStorage.setItem("goal", newGoal);
 	localStorage.setItem("dateGoalStart", todayDate);
 	localStorage.setItem("yourStreak", "0");
@@ -27,6 +27,10 @@ function changeGoal() {
 	$('.goalStart').text('Goal started on: ' + localStorage.getItem("dateGoalStart"));
 	$('.streak').html("Your Streak is: 0 Days");
 	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">I did the thing today</a>")
+
+	$('#doOrDoNot').toggle(200);
+	$('#setup').toggle(200);
+	$('.doTheThing').show();
 }
 
 //Generates a calendar, from the calendarBas calendar
@@ -59,6 +63,7 @@ function doTheThing() {
 	$('.today').removeClass('missed');
 	$('.today').addClass('completed');
 	$('.today').addClass('lastDone');
+	$('.stillTime').remove();
 	localStorage.setItem("dateLastDone", todayDate);
 	
 	streak++;
@@ -104,7 +109,7 @@ function didNotDoTheThing() {
 			localStorage.setItem("yourStreak", streak.toString());
 
 			$('.doTheThing').show();
-
+			$('#doOrDoNot').prepend('<p class=\"stillTime\">Are you sure? You have until midnight. It\'s not too late!</p>');
 		} else {
 			$('#doOrDoNot').prepend('<p class=\"stillTime\">Are you sure? You have until midnight. It\'s not too late!</p>');
 		}
@@ -154,6 +159,11 @@ function clearStreak(){
 	};
 }
 
+function setup() {
+	$('#doOrDoNot').toggle();
+	$('#setup').toggle();
+}
+
 function popUp(which) {
 	$('.fadeOver').fadeToggle(200);
 	$('.popOver').fadeToggle(200);
@@ -163,11 +173,12 @@ var main = function() {
 	if(typeof(Storage) !== "undefined") {
 	// Code for localStorage/sessionStorage.
 		if (null == localStorage.getItem("goal")){
+			setup();
 			changeGoal();
 		}
 	} else {
 	// Sorry! No Web Storage support..
-		window.alert("Broken");
+		$('body').html("Sorry, you need a browser that supports Local Storage.");
 	}
 
 	genCalendar(cal);
