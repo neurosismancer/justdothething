@@ -3,7 +3,9 @@ html, body {
 }
 
 body {
-	margin-left: 67%;
+	padding: 0;
+	margin: 0;
+	margin-left: 67% !important;
 	/*background-color: #336699;*/
 
 	font-family: Helvetica, Arial, sans-serif;
@@ -32,17 +34,16 @@ body {
 	left: 0;
 	width: 66%;
 	height: 100%;
+	text-align: center;
 }
 
 .calendar {
 	width: 100%;
-	height: 100%;
+	height: 80%;
 	overflow: auto;
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	/*background-color: #dddddd;
-	opacity: 60%;*/
 }
 
 .calendar li {
@@ -53,14 +54,15 @@ body {
 	text-align: left;
 	margin: 0.5%;
 	outline: 1px solid black;
+	min-height: 44px;
 }
 
 .goalStart {
 	text-align: center;
 }
 
-#progress {
-	text-align: center;
+#setup {
+	display: none;
 }
 
 .fadeOver {
