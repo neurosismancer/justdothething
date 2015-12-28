@@ -1,15 +1,27 @@
-//get Date
+//get today's date for all kinds of function
 var currDate = new Date();
 var currYear = currDate.getFullYear();
 var currMonth = currDate.getMonth();
 var currDay = currDate.getDate();
 var todayDate = currYear + "-" + (currMonth + 1) + "-" + currDay;
 
+//Set streak (days completed) by converting locally stored value to Int
 var streak = localStorage.getItem("yourStreak");
 var streak = parseInt(streak);
+if (streak === null){
+	streak = 0;
+}
 
+//Sets a date value for the last day completed in, or marks it as Never.
+var lastDone = localStorage.getItem("dateLastDone");
+if (lastDone === null){
+	lastDone = "Never";
+}
+
+//Creates a calendar object
 var cal = new calendarBase.Calendar({ siblingMonths: true, weekStart: 0 });
 
+//Provides an option for changing the goal
 function changeGoal() {
 	clearStreak();
 
@@ -28,8 +40,8 @@ function changeGoal() {
 	$('.streak').html("Your Streak is: 0 Days");
 	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">I did the thing today</a>")
 
-	$('#doOrDoNot').toggle(200);
-	$('#setup').toggle(200);
+	$('#doOrDoNot').toggle();
+	$('#setup').toggle();
 	$('.doTheThing').show();
 }
 
@@ -120,10 +132,13 @@ function didNotDoTheThing() {
 
 //resets everything, and forces you to pick a new goal
 function globalReset() {
+	clearStreak();
 	localStorage.removeItem("goal");
 	localStorage.removeItem("dateGoalStart");
 	localStorage.removeItem("dateLastDone");
 	localStorage.removeItem("yourStreak");
+
+	streak = 0;
 
 	changeGoal();
 }
@@ -166,6 +181,7 @@ function setup() {
 	$('#setup').toggle();
 }
 
+//FIXME: Drop this, or use it for a First Run deal
 function popUp(which) {
 	$('.fadeOver').fadeToggle(200);
 	$('.popOver').fadeToggle(200);
@@ -185,17 +201,7 @@ var main = function() {
 
 	genCalendar(cal);
 
-	var streak = localStorage.getItem("yourStreak");
-	var streak = parseInt(streak);
-	if (streak === null){
-		streak = 0;
-	}
-
 	var streakEnd = $('.lastDone');
-	var lastDone = localStorage.getItem("dateLastDone");
-	if (lastDone === null){
-		lastDone = "Never";
-	}
 
 	$('.goalAndStreak').text("Your Goal is: " + localStorage.getItem("goal"));
 	$('.goalStart').text('Goal started on: ' + localStorage.getItem("dateGoalStart"));
@@ -211,14 +217,14 @@ var main = function() {
 
 		$('#doOrDoNot').prepend("<p>Hey! You didn't check in yesterday! Did you accomplish your goal?");
 		$('.doTheThing').html("<a onclick=\"didYesterday()\" href=\"javascript:void(0);\">I did the thing yesterday</a>")
-
-		//TKTKTK
 	} else if ($('.lastDone').attr('name') < $('.today').prev().prev().attr('name')) {
+		//FIXME: Backfill missed days, swap out Actions with "Start Over with Same Goal"
+		//and "Start Over with New Goal"
 		window.alert("You missed more than one day. You need to start over.");
 		startOver();
 	} else {
 		//don't do nuthin'
-	};	
+	};
 }
 
 $(document).ready(main);
