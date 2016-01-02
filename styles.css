@@ -1,10 +1,10 @@
 html, body {
 	height: 100%;
+	padding: 0;
+	margin: 0;
 }
 
 body {
-	padding: 0;
-	margin: 0;
 	margin-left: 67% !important;
 	/*background-color: #336699;*/
 
