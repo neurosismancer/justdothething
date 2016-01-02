@@ -196,7 +196,7 @@ var main = function() {
 	if(typeof(Storage) !== "undefined") {
 	// Code for localStorage/sessionStorage.
 		if (null == localStorage.getItem("goal")){
-			setup();
+			setupToggle();
 			changeGoal();
 		}
 	} else {
