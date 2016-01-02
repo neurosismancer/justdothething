@@ -56,8 +56,11 @@ function genCalendar(cal) {
 function printCalDay(date) {
 	var dateLastDone = localStorage.getItem("dateLastDone");
 	var fullDate = date.year + "-" + (date.month + 1) + "-" + date.day;
+	//alert(fullDate);
 
-	if (date.siblingMonth) {
+	if (date.siblingMonth && fullDate == dateLastDone) {
+		$('.calendar').append('<li class=\"siblingMonth lastDone\" name=\"' + fullDate + '\">' + date.day + '</li>')
+	} else if (date.siblingMonth) {
 		$('.calendar').append('<li class=\"siblingMonth\" name=\"' + fullDate + '\">' + date.day + '</li>')
 	} else if (fullDate == dateLastDone && fullDate == todayDate) {
 		$('.calendar').append('<li class=\"today lastDone\" name=\"' + fullDate + '\">' + date.day + '</li>')
@@ -65,7 +68,7 @@ function printCalDay(date) {
 		$('.calendar').append('<li class=\"today\" name=\"' + fullDate + '\">' + date.day + '</li>')
 	} else if (fullDate == dateLastDone) {
 		$('.calendar').append('<li class=\"lastDone\" name=\"' + fullDate + '\">' + date.day + '</li>')
-	}else {
+	} else {
 		$('.calendar').append('<li name=\"' + fullDate + '\">' + date.day + '</li>')
 	}
 }
@@ -131,6 +134,7 @@ function didNotDoTheThing() {
 }
 
 //resets everything, and forces you to pick a new goal
+//FIXME: Add some kind of warning, or something.
 function globalReset() {
 	clearStreak();
 	localStorage.removeItem("goal");
@@ -176,7 +180,7 @@ function clearStreak(){
 	};
 }
 
-function setup() {
+function setupToggle() {
 	$('#doOrDoNot').toggle();
 	$('#setup').toggle();
 }
@@ -199,6 +203,7 @@ var main = function() {
 		$('body').html("Sorry, you need a browser that supports Local Storage.");
 	}
 
+	//Setting up the page
 	genCalendar(cal);
 
 	var streakEnd = $('.lastDone');
@@ -209,6 +214,7 @@ var main = function() {
 
 	fillStreak(streak, streakEnd);
 
+	//Checking for recent completion, or the lack thereof.
 	if (localStorage.getItem("dateLastDone") == $('.today').attr('name')){
 		$('.today').addClass('completed');
 		$('.doTheThing').hide();
@@ -216,12 +222,13 @@ var main = function() {
 		$('.today').prev().addClass('missed');
 
 		$('#doOrDoNot').prepend("<p>Hey! You didn't check in yesterday! Did you accomplish your goal?");
+
 		$('.doTheThing').html("<a onclick=\"didYesterday()\" href=\"javascript:void(0);\">I did the thing yesterday</a>")
 	} else if ($('.lastDone').attr('name') < $('.today').prev().prev().attr('name')) {
-		//FIXME: Backfill missed days, swap out Actions with "Start Over with Same Goal"
+		//FIXME: (also holy crap this is all so broke) Backfill missed days, swap out Actions with "Start Over with Same Goal"
 		//and "Start Over with New Goal"
 		window.alert("You missed more than one day. You need to start over.");
-		startOver();
+		//startOver();
 	} else {
 		//don't do nuthin'
 	};
