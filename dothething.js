@@ -101,7 +101,8 @@ function didYesterday() {
 	$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
 	localStorage.setItem("yourStreak", streak.toString());
 
-	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">I did the thing today</a>")
+	$('.missedADay').remove();
+	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">Yes</a>")
 }
 
 function didNotDoTheThing() {
@@ -221,9 +222,9 @@ var main = function() {
 	} else if ($('.lastDone').attr('name') == $('.today').prev().prev().attr('name')) {
 		$('.today').prev().addClass('missed');
 
-		$('#doOrDoNot').prepend("<p>Hey! You didn't check in yesterday! Did you accomplish your goal?");
+		$('#doOrDoNot').prepend("<p class=\"missedADay\">Hey! You didn't check in yesterday! Did you accomplish your goal?");
 
-		$('.doTheThing').html("<a onclick=\"didYesterday()\" href=\"javascript:void(0);\">I did the thing yesterday</a>")
+		$('.doTheThing').html("<a onclick=\"didYesterday()\" href=\"javascript:void(0);\">Yes</a>")
 	} else if ($('.lastDone').attr('name') < $('.today').prev().prev().attr('name')) {
 		//FIXME: (also holy crap this is all so broke) Backfill missed days, swap out Actions with "Start Over with Same Goal"
 		//and "Start Over with New Goal"
