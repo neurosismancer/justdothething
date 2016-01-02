@@ -26,32 +26,26 @@
 		</section>
 
 		<section id="doOrDoNot">
+			<h4>Did you accomplish your goal today?</h4>
 			<ul id="actions">
-				<li class="doTheThing"><a onclick="doTheThing()" href="javascript:void(0);">I did the thing today</a></li>
-				<li><a onclick="didNotDoTheThing()" href="javascript:void(0);" class="didNotDoTheThing">I did not do the thing</a></li>
+				<li class="doTheThing"><a onclick="doTheThing()" href="javascript:void(0);">Yes</a></li>
+				<li class="didNotDoTheThing"><a onclick="didNotDoTheThing()" href="javascript:void(0);" class="didNotDoTheThing">No</a></li>
 			</ul>
 		</section>
 
 		<section id="setup">
 			<input class="newGoal" type="text" length="255" value="Accomplish Wonders."><br />
 			<button type="" onclick="changeGoal()">Set New Goal</button>
-			<button type="" onclick="setup()">Cancel</button>
+			<button type="" onclick="setupToggle()">Cancel</button>
 			<p class="warning">Warning! This will reset all your previous progress!</p>
 		</section>
 
-		<section>
+		<nav>
 			<ul id="options">
-				<li><a onclick="setup()" href="javascript:void(0);" class="changeGoal">Change Goal</a></li>
+				<li><a onclick="setupToggle()" href="javascript:void(0);" class="changeGoal">Change Goal</a></li>
 				<li><a onclick="globalReset()" href="javascript:void(0);">Reset All Progress</a></li>
 			</ul>
-		</section>
-		
-		<!--<a onclick="popovertest()" href="javascript:void(0);">Pop Up Test.<a>-->
+		</nav>
 
-		<!--<div class="fadeOver">
-		</div>
-		<div class="popOver">
-			<a onclick="popovertest()" href="javascript:void(0);"><h1>Close</h1></a>
-		</div>-->
 	</body>
 </html>
