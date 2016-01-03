@@ -229,7 +229,7 @@ var main = function() {
 		//FIXME: (also holy crap this is all so broke) Backfill missed days, swap out Actions with "Start Over with Same Goal"
 		//and "Start Over with New Goal"
 		window.alert("You missed more than one day. You need to start over.");
-		//startOver();
+		startOver();
 	} else {
 		//don't do nuthin'
 	};
