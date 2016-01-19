@@ -1,9 +1,26 @@
 //get today's date for all kinds of function
 var currDate = new Date();
 var currYear = currDate.getFullYear();
-var currMonth = currDate.getMonth();
+var currMonth = (currDate.getMonth() + 1);
+currDate.setHours(0,0,0,0);
+console.log("Today: " + currDate);
+
+if (currMonth < 10){
+	currMonth = "0" + currMonth;
+}
+
 var currDay = currDate.getDate();
-var todayDate = currYear + "-" + (currMonth + 1) + "-" + currDay;
+
+if (currDay < 10){
+	currDay = "0" + currDay;
+}
+
+var todayDate = currYear + "-" + currMonth + "-" + currDay;
+
+var twoDaysAgo = new Date()
+twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+twoDaysAgo.setHours(0,0,0,0);
+console.log("Two Days Ago: " + twoDaysAgo);
 
 //Set streak (days completed) by converting locally stored value to Int
 var streak = localStorage.getItem("yourStreak");
@@ -16,6 +33,18 @@ if (streak === null){
 var lastDone = localStorage.getItem("dateLastDone");
 if (lastDone === null){
 	lastDone = "Never";
+} else {
+	dateLastDone = parseDate(lastDone);
+	console.log("Last Done: " + dateLastDone);
+}
+
+console.log(dateLastDone.getTime() == twoDaysAgo.getTime());
+
+// parse a date in yyyy-mm-dd format
+function parseDate(input) {
+  var parts = input.match(/(\d+)/g);
+  // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+  return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
 }
 
 //Creates a calendar object
@@ -30,8 +59,7 @@ function changeGoal() {
 	localStorage.setItem("dateGoalStart", todayDate);
 	localStorage.setItem("yourStreak", "0");
 
-	var streak = localStorage.getItem("yourStreak");
-	var streak = parseInt(streak);
+	var streak = 0;
 	
 	localStorage.removeItem("dateLastDone");
 
@@ -55,8 +83,21 @@ function genCalendar(cal) {
 //prints the table cell for the day in the calendar, identifying if the cell is for the current day
 function printCalDay(date) {
 	var dateLastDone = localStorage.getItem("dateLastDone");
-	var fullDate = date.year + "-" + (date.month + 1) + "-" + date.day;
-	//alert(fullDate);
+
+	//Adjust Formatting for Date Conversions
+	var printMonth = date.month + 1;
+
+	if (printMonth < 10){
+		printMonth = "0" + printMonth;
+	}
+
+	var printDay = date.day;
+
+	if (printDay < 10){
+		printDay = "0" + printDay;
+	}
+
+	var fullDate = date.year + "-" + printMonth + "-" + printDay;
 
 	if (date.siblingMonth && fullDate == dateLastDone) {
 		$('.calendar').append('<li class=\"siblingMonth lastDone\" name=\"' + fullDate + '\">' + date.day + '</li>')
@@ -74,7 +115,7 @@ function printCalDay(date) {
 }
 
 function doTheThing() {
-	var streakEnd = $('.today').prev();
+	var streakEnd = $('.today');
 	$('.today').removeClass('missed');
 	$('.today').addClass('completed');
 	$('.today').addClass('lastDone');
@@ -216,20 +257,20 @@ var main = function() {
 	fillStreak(streak, streakEnd);
 
 	//Checking for recent completion, or the lack thereof.
-	if (localStorage.getItem("dateLastDone") == $('.today').attr('name')){
+	if (dateLastDone.getTime() == currDate.getTime()){
 		$('.today').addClass('completed');
 		$('.doTheThing').hide();
-	} else if ($('.lastDone').attr('name') == $('.today').prev().prev().attr('name')) {
+	} else if (dateLastDone.getTime() == twoDaysAgo.getTime()) {
 		$('.today').prev().addClass('missed');
 
 		$('#doOrDoNot').prepend("<p class=\"missedADay\">Hey! You didn't check in yesterday! Did you accomplish your goal?");
 
 		$('.doTheThing').html("<a onclick=\"didYesterday()\" href=\"javascript:void(0);\">Yes</a>")
-	} else if ($('.lastDone').attr('name') < $('.today').prev().prev().attr('name')) {
+	} else if (dateLastDone.getTime() < twoDaysAgo.getTime()) {
 		//FIXME: (also holy crap this is all so broke) Backfill missed days, swap out Actions with "Start Over with Same Goal"
 		//and "Start Over with New Goal"
 		window.alert("You missed more than one day. You need to start over.");
-		startOver();
+		//startOver();
 	} else {
 		//don't do nuthin'
 	};
