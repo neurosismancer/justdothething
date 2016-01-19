@@ -2,6 +2,7 @@
 var currDate = new Date();
 var currYear = currDate.getFullYear();
 var currMonth = (currDate.getMonth() + 1);
+var dateLastDone = new Date();
 currDate.setHours(0,0,0,0);
 console.log("Today: " + currDate);
 
@@ -17,7 +18,7 @@ if (currDay < 10){
 
 var todayDate = currYear + "-" + currMonth + "-" + currDay;
 
-var twoDaysAgo = new Date()
+var twoDaysAgo = new Date();
 twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
 twoDaysAgo.setHours(0,0,0,0);
 console.log("Two Days Ago: " + twoDaysAgo);
@@ -38,7 +39,7 @@ if (lastDone === null){
 	console.log("Last Done: " + dateLastDone);
 }
 
-console.log(dateLastDone.getTime() == twoDaysAgo.getTime());
+//console.log(dateLastDone.getTime() == twoDaysAgo.getTime());
 
 // parse a date in yyyy-mm-dd format
 function parseDate(input) {
