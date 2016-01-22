@@ -212,6 +212,17 @@ function fillStreak(streak, streakEnd) {
 	};
 }
 
+//Backfills missed days on calendar
+function fillMissed(lastMissed) {
+	lastMissed.addClass('missed');
+
+	var prevMissed = lastMissed.prev();
+	while (!prevMissed.hasClass('completed')){
+		prevMissed.addClass('missed');
+		prevMissed = prevMissed.prev();
+	}
+}
+
 //Clears the streak on the calendar
 function clearStreak(){
 	var streakEnd = $('.lastDone');
@@ -268,8 +279,8 @@ var main = function() {
 
 		$('.doTheThing').html("<a onclick=\"didYesterday()\" href=\"javascript:void(0);\">Yes</a>")
 	} else if (dateLastDone.getTime() < twoDaysAgo.getTime()) {
-		//Backfill missed days, swap out Actions with "Start Over with Same Goal"
-		//and "Start Over with New Goal"
+		//FIXME: swap out Actions with "Start Over with Same Goal" and "Start Over with New Goal"
+		fillMissed($('.today').prev());
 		window.alert("You missed more than one day. You need to start over.");
 		startOver();
 	} else {
