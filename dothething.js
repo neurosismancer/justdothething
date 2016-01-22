@@ -144,6 +144,7 @@ function didYesterday() {
 	localStorage.setItem("yourStreak", streak.toString());
 
 	$('.missedADay').remove();
+	$('.didYouDoIt').show();
 	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">Yes</a>")
 }
 
@@ -276,6 +277,7 @@ var main = function() {
 		$('.today').prev().addClass('missed');
 
 		$('#doOrDoNot').prepend("<p class=\"missedADay\">Hey! You didn't check in yesterday! Did you accomplish your goal?");
+		$('.didYouDoIt').hide();
 
 		$('.doTheThing').html("<a onclick=\"didYesterday()\" href=\"javascript:void(0);\">Yes</a>")
 	} else if (dateLastDone.getTime() < twoDaysAgo.getTime()) {
