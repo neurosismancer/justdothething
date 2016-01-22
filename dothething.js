@@ -180,15 +180,17 @@ function didNotDoTheThing() {
 //resets everything, and forces you to pick a new goal
 //FIXME: Add some kind of warning, or something.
 function globalReset() {
-	clearStreak();
-	localStorage.removeItem("goal");
-	localStorage.removeItem("dateGoalStart");
-	localStorage.removeItem("dateLastDone");
-	localStorage.removeItem("yourStreak");
-
-	streak = 0;
-
-	changeGoal();
+	if(confirm("This will reset all your progress. Are you sure you want to continue?")) {
+		clearStreak();
+		localStorage.removeItem("goal");
+		localStorage.removeItem("dateGoalStart");
+		localStorage.removeItem("dateLastDone");
+		localStorage.removeItem("yourStreak");
+	
+		streak = 0;
+	
+		changeGoal();
+	}
 }
 
 //Resets streak progress, but keeps the goal
@@ -226,10 +228,11 @@ function fillMissed(lastMissed) {
 
 //Clears the streak on the calendar
 function clearStreak(){
-	var streakEnd = $('.lastDone');
+	var streakEnd = $('.today');
 
 	for (i = 0; i <= streak; i++){
 		streakEnd.removeClass('completed');
+		streakEnd.removeClass('missed');
 		nextDay = streakEnd;
 		streakEnd = streakEnd.prev();
 	};
