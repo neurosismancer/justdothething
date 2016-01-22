@@ -26,7 +26,7 @@ console.log("Two Days Ago: " + twoDaysAgo);
 //Set streak (days completed) by converting locally stored value to Int
 var streak = localStorage.getItem("yourStreak");
 var streak = parseInt(streak);
-if (streak === null){
+if (streak === NaN){
 	streak = 0;
 }
 
