@@ -24,10 +24,10 @@ twoDaysAgo.setHours(0,0,0,0);
 console.log("Two Days Ago: " + twoDaysAgo);
 
 //Set streak (days completed) by converting locally stored value to Int
-var streak = localStorage.getItem("yourStreak");
-var streak = parseInt(streak);
-if (streak === NaN){
-	streak = 0;
+if (localStorage.getItem("yourStreak")) {
+	var streak = parseInt(streak);
+} else {
+	var streak = 0;
 }
 
 //Sets a date value for the last day completed in, or marks it as Never.
@@ -178,7 +178,6 @@ function didNotDoTheThing() {
 }
 
 //resets everything, and forces you to pick a new goal
-//FIXME: Add some kind of warning, or something.
 function globalReset() {
 	if(confirm("This will reset all your progress. Are you sure you want to continue?")) {
 		clearStreak();
@@ -189,7 +188,7 @@ function globalReset() {
 	
 		streak = 0;
 	
-		changeGoal();
+		setupToggle();
 	}
 }
 
@@ -254,7 +253,7 @@ var main = function() {
 	// Code for localStorage/sessionStorage.
 		if (null == localStorage.getItem("goal")){
 			setupToggle();
-			changeGoal();
+			//changeGoal();
 		}
 	} else {
 	// Sorry! No Web Storage support..
