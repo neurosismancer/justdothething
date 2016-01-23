@@ -279,8 +279,8 @@ var main = function() {
 	} else if (dateLastDone.getTime() == twoDaysAgo.getTime()) {
 		$('.today').prev().addClass('missed');
 
-		$('#doOrDoNot').prepend("<p class=\"missedADay\">Hey! You didn't check in yesterday! Did you accomplish your goal?");
 		$('.didYouDoIt').hide();
+		$('#doOrDoNot').prepend("<h4 class=\"missedADay\">Hey! You didn't check in yesterday! Did you accomplish your goal?</h4>");
 
 		$('.doTheThing').html("<a onclick=\"didYesterday()\" href=\"javascript:void(0);\">Yes</a>")
 	} else if (dateLastDone.getTime() < twoDaysAgo.getTime()) {
