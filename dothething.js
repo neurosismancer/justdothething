@@ -63,15 +63,20 @@ function changeGoal() {
 	var streak = 0;
 	
 	localStorage.removeItem("dateLastDone");
-
-	$('.goalAndStreak').text("Your Goal is: " + localStorage.getItem("goal"));
-	$('.goalStart').text('Goal started on: ' + localStorage.getItem("dateGoalStart"));
-	$('.streak').html("Your Streak is: 0 Days");
-	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">I did the thing today</a>")
+	
+	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">Yes</a>")
 
 	$('#doOrDoNot').toggle();
 	$('#setup').toggle();
 	$('.doTheThing').show();
+
+	updateGoalInfo();
+}
+
+function updateGoalInfo() {
+	$('.goalAndStreak').text("Your Goal is: " + localStorage.getItem("goal"));
+	$('.goalStart').text('Goal started on: ' + localStorage.getItem("dateGoalStart"));
+	$('.streak').html("Your Streak is: 0 Days");
 }
 
 //Generates a calendar, from the calendarBas calendar
@@ -170,10 +175,9 @@ function didNotDoTheThing() {
 			localStorage.setItem("yourStreak", streak.toString());
 
 			$('.doTheThing').show();
-			$('#doOrDoNot').prepend('<p class=\"stillTime\">Are you sure? You have until midnight. It\'s not too late!</p>');
-		} else {
-			$('#doOrDoNot').prepend('<p class=\"stillTime\">Are you sure? You have until midnight. It\'s not too late!</p>');
 		}
+
+		$('#doOrDoNot').prepend('<p class=\"stillTime\">Are you sure? You have until midnight. It\'s not too late!</p>');
 	}
 }
 
@@ -187,6 +191,10 @@ function globalReset() {
 		localStorage.removeItem("yourStreak");
 	
 		streak = 0;
+
+		$('.goalAndStreak').html("Please set a goal");
+		$('.goalStart').html("Your start date will be today");
+		$('.streak').html("");
 	
 		setupToggle();
 	}
@@ -254,6 +262,8 @@ var main = function() {
 		if (null == localStorage.getItem("goal")){
 			setupToggle();
 			//changeGoal();
+		} else {
+			updateGoalInfo();
 		}
 	} else {
 	// Sorry! No Web Storage support..
@@ -264,10 +274,6 @@ var main = function() {
 	genCalendar(cal);
 
 	var streakEnd = $('.lastDone');
-
-	$('.goalAndStreak').text("Your Goal is: " + localStorage.getItem("goal"));
-	$('.goalStart').text('Goal started on: ' + localStorage.getItem("dateGoalStart"));
-	$('.streak').html("Your Streak is: " + streak + ' Days <br>\n<small>Last Completed: ' + lastDone + '</small>');
 
 	fillStreak(streak, streakEnd);
 
