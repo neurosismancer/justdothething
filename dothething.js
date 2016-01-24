@@ -25,7 +25,7 @@ console.log("Two Days Ago: " + twoDaysAgo);
 
 //Set streak (days completed) by converting locally stored value to Int
 if (localStorage.getItem("yourStreak")) {
-	var streak = parseInt(streak);
+	var streak = parseInt(localStorage.getItem("yourStreak"));
 } else {
 	var streak = 0;
 }
@@ -68,6 +68,7 @@ function changeGoal() {
 
 	$('#doOrDoNot').toggle();
 	$('#setup').toggle();
+	$('.startOver').hide();
 	$('.doTheThing').show();
 
 	updateGoalInfo();
@@ -211,6 +212,8 @@ function startOver() {
 
 	$('.streak').html("Your Streak is: 0 Days");
 	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">I did the thing today</a>")
+
+	setupToggle();
 }
 
 //Backfills dates on calendar for current streak
@@ -237,7 +240,7 @@ function fillMissed(lastMissed) {
 function clearStreak(){
 	var streakEnd = $('.today');
 
-	for (i = 0; i <= streak; i++){
+	for (i = 0; i <= 31; i++){
 		streakEnd.removeClass('completed');
 		streakEnd.removeClass('missed');
 		nextDay = streakEnd;
@@ -291,8 +294,9 @@ var main = function() {
 	} else if (dateLastDone.getTime() < twoDaysAgo.getTime()) {
 		//FIXME: swap out Actions with "Start Over with Same Goal" and "Start Over with New Goal"
 		fillMissed($('.today').prev());
-		window.alert("You missed more than one day. You need to start over.");
-		startOver();
+		$('didYouDoIt').html("You missed more than one day. You need to start over.");
+		$('#actions').hide();
+		$('.startOver').show();
 	} else {
 		//don't do nuthin'
 	};
