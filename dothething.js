@@ -24,10 +24,9 @@ twoDaysAgo.setHours(0,0,0,0);
 console.log("Two Days Ago: " + twoDaysAgo);
 
 //Set streak (days completed) by converting locally stored value to Int
-if (localStorage.getItem("yourStreak")) {
-	var streak = parseInt(localStorage.getItem("yourStreak"));
-} else {
-	var streak = 0;
+var streak = parseInt(localStorage.getItem("yourStreak"));
+if(streak == NaN){
+	streak = 0;
 }
 
 //Sets a date value for the last day completed in, or marks it as Never.
@@ -60,7 +59,7 @@ function changeGoal() {
 	localStorage.setItem("dateGoalStart", todayDate);
 	localStorage.setItem("yourStreak", "0");
 
-	var streak = 0;
+	streak = 0;
 	
 	localStorage.removeItem("dateLastDone");
 	
@@ -77,7 +76,7 @@ function changeGoal() {
 function updateGoalInfo() {
 	$('.goalAndStreak').text("Your Goal is: " + localStorage.getItem("goal"));
 	$('.goalStart').text('Goal started on: ' + localStorage.getItem("dateGoalStart"));
-	$('.streak').html("Your Streak is: 0 Days");
+	$('.streak').html("Your Streak is: " + streak + " Days");
 }
 
 //Generates a calendar, from the calendarBas calendar
