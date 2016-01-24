@@ -61,7 +61,7 @@ body {
 	text-align: center;
 }
 
-#setup {
+#setup, .startOver, .warning {
 	display: none;
 }
 
