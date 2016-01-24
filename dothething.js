@@ -275,6 +275,12 @@ var main = function() {
 	//Setting up the page
 	genCalendar(cal);
 
+	if($('.calendar').children().length == 42) {
+		$('.calendar li').height('16.2%');
+	} else if ($('.calendar').children().length == 28) {
+		$('.calendar li').height('24.5%');
+	}
+
 	var streakEnd = $('.lastDone');
 
 	fillStreak(streak, streakEnd);
