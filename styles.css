@@ -51,12 +51,15 @@ body {
 .calendar li {
 	display: inline-block;
 	float: left;
-	height: 14.28%;
-	width: 13.28%;
+	height: 14.2%;
+	width: 12.28%;
 	text-align: left;
-	margin: 0.5%;
+	margin: 5px;
+	padding: 10px;
 	outline: 1px solid black;
 	min-height: 44px;
+	box-sizing: border-box;
+	font-size: 24px;
 }
 
 .goalStart {
