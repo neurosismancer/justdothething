@@ -25,7 +25,7 @@ console.log("Two Days Ago: " + twoDaysAgo);
 
 //Set streak (days completed) by converting locally stored value to Int
 var streak = parseInt(localStorage.getItem("yourStreak"));
-if(streak == NaN){
+if(isNaN(streak)){
 	streak = 0;
 }
 
@@ -60,13 +60,13 @@ function changeGoal() {
 	localStorage.setItem("yourStreak", "0");
 
 	streak = 0;
-	
+
 	localStorage.removeItem("dateLastDone");
-	
+
 	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">Yes</a>")
 
 	$('#doOrDoNot').toggle();
-	$('#setup').toggle();
+	$('#setup').toggle()
 	$('.startOver').hide();
 	$('.doTheThing').show();
 
@@ -77,6 +77,7 @@ function updateGoalInfo() {
 	$('.goalAndStreak').text("Your Goal is: " + localStorage.getItem("goal"));
 	$('.goalStart').text('Goal started on: ' + localStorage.getItem("dateGoalStart"));
 	$('.streak').html("Your Streak is: " + streak + " Days");
+	$('#actions').show();
 }
 
 //Generates a calendar, from the calendarBas calendar
@@ -127,7 +128,7 @@ function doTheThing() {
 	$('.today').addClass('lastDone');
 	$('.stillTime').remove();
 	localStorage.setItem("dateLastDone", todayDate);
-	
+
 	streak++;
 	$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
 	localStorage.setItem("yourStreak", streak.toString());
@@ -189,13 +190,13 @@ function globalReset() {
 		localStorage.removeItem("dateGoalStart");
 		localStorage.removeItem("dateLastDone");
 		localStorage.removeItem("yourStreak");
-	
+
 		streak = 0;
 
 		$('.goalAndStreak').html("Please set a goal");
 		$('.goalStart').html("Your start date will be today");
 		$('.streak').html("");
-	
+
 		setupToggle();
 	}
 }
@@ -210,8 +211,9 @@ function startOver() {
 	streak = 0;
 
 	$('.streak').html("Your Streak is: 0 Days");
-	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">I did the thing today</a>")
-
+	$('.didYouDoIt').html("Did you accomplish your goal today?");
+	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">Yes</a>")
+	$('.startOver').hide();
 	setupToggle();
 }
 
@@ -276,9 +278,11 @@ var main = function() {
 	genCalendar(cal);
 
 	if($('.calendar').children().length == 42) {
-		$('.calendar li').height('16.2%');
+		var dayHeight = $('.calendar').height / 6
+		$('.calendar li').height(dayHeight + 'px');
 	} else if ($('.calendar').children().length == 28) {
-		$('.calendar li').height('24.5%');
+		var dayHeight = $('.calendar').height / 4
+		$('.calendar li').height(dayHeight + 'px');
 	}
 
 	var streakEnd = $('.lastDone');
@@ -299,7 +303,7 @@ var main = function() {
 	} else if (dateLastDone.getTime() < twoDaysAgo.getTime()) {
 		//FIXME: swap out Actions with "Start Over with Same Goal" and "Start Over with New Goal"
 		fillMissed($('.today').prev());
-		$('didYouDoIt').html("You missed more than one day. You need to start over.");
+		$('.didYouDoIt').html("You missed more than one day. You need to start over.");
 		$('#actions').hide();
 		$('.startOver').show();
 	} else {
