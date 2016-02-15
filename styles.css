@@ -92,6 +92,22 @@ h1 {
 
 #actions {
 	list-style: none;
+	overflow: auto;
+}
+
+#actions li {
+	box-sizing: border-box;
+	display: inline-block;
+	text-align: center;
+	width: 48%;
+	border: 1px solid #000;
+	border-radius: 8px;
+	font-size: 24px;
+}
+
+#actions li a {
+	display: block;
+	padding: 20px 0;
 }
 
 .fadeOver {
