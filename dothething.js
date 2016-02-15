@@ -121,6 +121,19 @@ function printCalDay(date) {
 	}
 }
 
+function setCalendarHeight() {
+	if($('.calendar').children().length == 42) {
+		var dayHeight = ($('.calendar').height() / 6) - 30;
+		$('.calendar li').height(dayHeight + 'px');
+	} else if ($('.calendar').children().length == 35){
+		var dayHeight = ($('.calendar').height() / 5) - 30;
+		$('.calendar li').height(dayHeight + 'px');
+	} else if ($('.calendar').children().length == 28) {
+		var dayHeight = ($('.calendar').height() / 4) - 30;
+		$('.calendar li').height(dayHeight + 'px');
+	}
+}
+
 function doTheThing() {
 	var streakEnd = $('.today');
 	$('.today').removeClass('missed');
@@ -277,17 +290,13 @@ var main = function() {
 	//Setting up the page
 	genCalendar(cal);
 
-	if($('.calendar').children().length == 42) {
-		var dayHeight = $('.calendar').height / 6
-		$('.calendar li').height(dayHeight + 'px');
-	} else if ($('.calendar').children().length == 28) {
-		var dayHeight = $('.calendar').height / 4
-		$('.calendar li').height(dayHeight + 'px');
-	}
+	setCalendarHeight();
 
 	var streakEnd = $('.lastDone');
 
 	fillStreak(streak, streakEnd);
+
+	$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
 
 	//Checking for recent completion, or the lack thereof.
 	if (dateLastDone.getTime() == currDate.getTime()){
@@ -309,6 +318,10 @@ var main = function() {
 	} else {
 		//don't do nuthin'
 	};
+
+	$(window).resize(function() {
+		setCalendarHeight();
+	});
 }
 
 $(document).ready(main);
