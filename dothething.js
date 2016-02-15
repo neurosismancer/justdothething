@@ -4,7 +4,6 @@ var currYear = currDate.getFullYear();
 var currMonth = (currDate.getMonth() + 1);
 var dateLastDone = new Date();
 currDate.setHours(0,0,0,0);
-console.log("Today: " + currDate);
 
 if (currMonth < 10){
 	currMonth = "0" + currMonth;
@@ -21,7 +20,6 @@ var todayDate = currYear + "-" + currMonth + "-" + currDay;
 var twoDaysAgo = new Date();
 twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
 twoDaysAgo.setHours(0,0,0,0);
-console.log("Two Days Ago: " + twoDaysAgo);
 
 //Set streak (days completed) by converting locally stored value to Int
 var streak = parseInt(localStorage.getItem("yourStreak"));
@@ -35,7 +33,6 @@ if (lastDone === null){
 	lastDone = "Never";
 } else {
 	dateLastDone = parseDate(lastDone);
-	console.log("Last Done: " + dateLastDone);
 }
 
 //console.log(dateLastDone.getTime() == twoDaysAgo.getTime());
@@ -122,6 +119,11 @@ function printCalDay(date) {
 }
 
 function setCalendarHeight() {
+	//setCalendar Height to fill remainder after goal data
+	calendarHeight = ($(window).height() - $('.goalData').height());
+	$('.calendar').height(calendarHeight + "px");
+
+	//Set calendar day cell height
 	if($('.calendar').children().length == 42) {
 		var dayHeight = ($('.calendar').height() / 6) - 30;
 		$('.calendar li').height(dayHeight + 'px');
