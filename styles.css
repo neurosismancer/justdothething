@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-	margin-left: 66% !important;
+	margin-left: 67% !important;
 	/*background-color: #336699;*/
 
 	font-family: Helvetica, Arial, sans-serif;
@@ -40,10 +40,13 @@ h1 {
 	width: 66%;
 	height: 100%;
 	text-align: center;
+
+	/*background-color: #336699;*/
 }
 
 #progress hgroup {
-	height: 15%;
+	height: auto;
+	padding: 1% 0;
 }
 
 #progress h2 {
@@ -57,7 +60,7 @@ h1 {
 .calendar {
 	position: relative;
 	width: 100%;
-	height: 85%;
+	height: auto;
 	overflow: visible;
 	list-style: none;
 	padding: 0 !important;
@@ -68,7 +71,7 @@ h1 {
 	display: inline-block;
 	float: left;
 	height: 14.2%;
-	width: 12.28%;
+	width: 13.2%;
 	text-align: left;
 	margin: 5px;
 	padding: 10px;
