@@ -28,11 +28,10 @@ if(isNaN(streak)){
 }
 
 //Sets a date value for the last day completed in, or marks it as Never.
-var lastDone = localStorage.getItem("dateLastDone");
-if (lastDone === null){
+if (!localStorage.getItem("dateLastDone")){
 	lastDone = "Never";
 } else {
-	dateLastDone = parseDate(lastDone);
+	dateLastDone = parseDate(localStorage.getItem("dateLastDone"));
 }
 
 //console.log(dateLastDone.getTime() == twoDaysAgo.getTime());
@@ -73,7 +72,11 @@ function changeGoal() {
 function updateGoalInfo() {
 	$('.goalAndStreak').text("Your Goal is: " + localStorage.getItem("goal"));
 	$('.goalStart').text('Goal started on: ' + localStorage.getItem("dateGoalStart"));
-	$('.streak').html("Your Streak is: " + streak + " Days");
+	if(localStorage.getItem("dateLastDone")){
+		$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
+	} else {
+		$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed: Never </small>');
+	}
 	$('#actions').show();
 }
 
@@ -172,6 +175,8 @@ function didYesterday() {
 function didNotDoTheThing() {
 	var streakEnd = $('.today').prev();
 
+	$('.didNotDoTheThing').html("<a onclick=\"didNotDoTheThing()\" href=\"javascript:void(0);\">Start Over</a>");
+
 	if ($('#doOrDoNot').children('.stillTime').length){
 		startOver();
 		$('.stillTime').remove();
@@ -228,6 +233,7 @@ function startOver() {
 	$('.streak').html("Your Streak is: 0 Days");
 	$('.didYouDoIt').html("Did you accomplish your goal today?");
 	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">Yes</a>")
+	$('.didNotDoTheThing').html("<a onclick=\"didNotDoTheThing()\" href=\"javascript:void(0);\">No</a>");
 	$('.startOver').hide();
 	setupToggle();
 }
@@ -292,8 +298,6 @@ var main = function() {
 		var streakEnd = $('.lastDone');
 
 		fillStreak(streak, streakEnd);
-
-		$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
 
 		updateGoalInfo();
 
