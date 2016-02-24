@@ -96,6 +96,7 @@ h1 {
 #actions {
 	list-style: none;
 	overflow: auto;
+	padding: 2% 0;
 }
 
 #actions li {
