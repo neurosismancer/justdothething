@@ -149,6 +149,8 @@ function doTheThing() {
 
 	streak++;
 	$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
+	$('.didNotDoTheThing').html("<a onclick=\"didNotDoTheThing()\" href=\"javascript:void(0);\">No</a>");
+
 	localStorage.setItem("yourStreak", streak.toString());
 
 	$('.doTheThing').hide();
