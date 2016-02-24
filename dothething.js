@@ -278,12 +278,6 @@ function popUp(which) {
 var main = function() {
 	if(typeof(Storage) !== "undefined") {
 	// Code for localStorage/sessionStorage.
-		if (null == localStorage.getItem("goal")){
-			setupToggle();
-			//changeGoal();
-		} else {
-			updateGoalInfo();
-		}
 	} else {
 	// Sorry! No Web Storage support..
 		$('body').html("Sorry, you need a browser that supports Local Storage.");
@@ -294,31 +288,37 @@ var main = function() {
 
 	setCalendarHeight();
 
-	var streakEnd = $('.lastDone');
+	if(localStorage.getItem("goal")){
+		var streakEnd = $('.lastDone');
 
-	fillStreak(streak, streakEnd);
+		fillStreak(streak, streakEnd);
 
-	$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
+		$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
 
-	//Checking for recent completion, or the lack thereof.
-	if (dateLastDone.getTime() == currDate.getTime()){
-		$('.today').addClass('completed');
-		$('.doTheThing').hide();
-	} else if (dateLastDone.getTime() == twoDaysAgo.getTime()) {
-		$('.today').prev().addClass('missed');
+		updateGoalInfo();
 
-		$('.didYouDoIt').hide();
-		$('#doOrDoNot').prepend("<h4 class=\"missedADay\">Hey! You didn't check in yesterday! Did you accomplish your goal?</h4>");
+		//Checking for recent completion, or the lack thereof.
+		if (dateLastDone.getTime() == currDate.getTime()){
+			$('.today').addClass('completed');
+			$('.doTheThing').hide();
+		} else if (dateLastDone.getTime() == twoDaysAgo.getTime()) {
+			$('.today').prev().addClass('missed');
 
-		$('.doTheThing').html("<a onclick=\"didYesterday()\" href=\"javascript:void(0);\">Yes</a>")
-	} else if (dateLastDone.getTime() < twoDaysAgo.getTime()) {
-		//FIXME: swap out Actions with "Start Over with Same Goal" and "Start Over with New Goal"
-		fillMissed($('.today').prev());
-		$('.didYouDoIt').html("You missed more than one day. You need to start over.");
-		$('#actions').hide();
-		$('.startOver').show();
+			$('.didYouDoIt').hide();
+			$('#doOrDoNot').prepend("<h4 class=\"missedADay\">Hey! You didn't check in yesterday! Did you accomplish your goal?</h4>");
+
+			$('.doTheThing').html("<a onclick=\"didYesterday()\" href=\"javascript:void(0);\">Yes</a>")
+		} else if (dateLastDone.getTime() < twoDaysAgo.getTime()) {
+			//FIXME: swap out Actions with "Start Over with Same Goal" and "Start Over with New Goal"
+			fillMissed($('.today').prev());
+			$('.didYouDoIt').html("You missed more than one day. You need to start over.");
+			$('#actions').hide();
+			$('.startOver').show();
+		} else if (lastDone === "Never"){
+			console.log("No Dates Logged");
+		};
 	} else {
-		//don't do nuthin'
+		setupToggle();
 	};
 
 	$(window).resize(function() {
