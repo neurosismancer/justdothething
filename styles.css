@@ -114,8 +114,11 @@ h1 {
 	padding: 20px 0;
 }
 
-input {
+.newGoal {
 	border: 1px solid #000;
+	margin: 1em 0;
+	padding: 4px 8px;
+	width: 90%;
 }
 
 button {
