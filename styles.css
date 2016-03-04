@@ -61,7 +61,7 @@ h1 {
 	position: relative;
 	width: 100%;
 	height: auto;
-	overflow: visible;
+	overflow: auto;
 	list-style: none;
 	padding: 0 !important;
 	margin: 0 !important;
@@ -151,3 +151,39 @@ button {
 
 	display: none;	
 }
+
+ @media screen and (orientation:portrait) {
+ 	body {
+ 		margin-left: 0 !important;
+ 	}
+ 	#progress {
+ 		position: relative !important;
+ 		width: 100% !important;
+ 		height: auto !important;
+ 	}
+
+ 	.calendar {
+ 		height: 50% !important;
+ 	}
+
+ 	.calendar li {
+ 		min-height: 22px !important;
+ 	}
+
+ 	.goalData {
+ 		text-align: center !important;
+ 	}
+
+ 	h1 {
+ 		text-align: center !important;
+ 		font-size: 1.6em !important;
+ 	}
+
+ 	h2 {
+ 		font-size: 1.2em !important;
+ 	}
+
+ 	h3 {
+ 		font-size: 1.067em !important;
+ 	}
+ }

@@ -294,7 +294,9 @@ var main = function() {
 	//Setting up the page
 	genCalendar(cal);
 
-	setCalendarHeight();
+	if(window.innerWidth > window.innerHeight){
+		setCalendarHeight();
+	}
 
 	if(localStorage.getItem("goal")){
 		var streakEnd = $('.lastDone');
@@ -315,14 +317,12 @@ var main = function() {
 
 			$('.doTheThing').html("<a onclick=\"didYesterday()\" href=\"javascript:void(0);\">Yes</a>")
 		} else if (dateLastDone.getTime() < twoDaysAgo.getTime()) {
-			//FIXME: swap out Actions with "Start Over with Same Goal" and "Start Over with New Goal"
 			fillMissed($('.today').prev());
 			$('.didYouDoIt').html("You missed more than one day. You need to start over.");
 			$('#actions').hide();
 			$('.startOver').show();
-		} else if (lastDone === "Never"){
-			console.log("No Dates Logged");
 		};
+		
 	} else {
 		setupToggle();
 	};
