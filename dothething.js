@@ -50,7 +50,7 @@ var cal = new calendarBase.Calendar({ siblingMonths: true, weekStart: 0 });
 function changeGoal() {
 	clearStreak();
 
-	var newGoal = $('.newGoal').val()
+	var newGoal = $('.newGoal').val();
 	localStorage.setItem("goal", newGoal);
 	localStorage.setItem("dateGoalStart", todayDate);
 	localStorage.setItem("yourStreak", "0");
@@ -59,7 +59,7 @@ function changeGoal() {
 
 	localStorage.removeItem("dateLastDone");
 
-	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">Yes</a>")
+	$('.doTheThing').html("<a onclick=\"doTheThing()\" href=\"javascript:void(0);\">Yes</a>");
 
 	$('#doOrDoNot').toggle();
 	$('#setup').toggle()
@@ -322,7 +322,7 @@ var main = function() {
 			$('#actions').hide();
 			$('.startOver').show();
 		};
-		
+
 	} else {
 		setupToggle();
 	};
