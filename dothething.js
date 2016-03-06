@@ -154,6 +154,8 @@ function doTheThing() {
 	localStorage.setItem("yourStreak", streak.toString());
 
 	$('.doTheThing').hide();
+	$('.didNotDoTheThing').show();
+	$('.startOver').hide();
 }
 
 function didYesterday() {
@@ -177,7 +179,8 @@ function didYesterday() {
 function didNotDoTheThing() {
 	var streakEnd = $('.today').prev();
 
-	$('.didNotDoTheThing').html("<a onclick=\"didNotDoTheThing()\" href=\"javascript:void(0);\">Start Over</a>");
+	$('.startOver').show();
+	$('.didNotDoTheThing').hide();
 
 	if ($('#doOrDoNot').children('.stillTime').length){
 		startOver();
@@ -305,6 +308,8 @@ var main = function() {
 
 		updateGoalInfo();
 
+		$('.startOver').hide();
+
 		//Checking for recent completion, or the lack thereof.
 		if (dateLastDone.getTime() == currDate.getTime()){
 			$('.today').addClass('completed');
@@ -319,7 +324,8 @@ var main = function() {
 		} else if (dateLastDone.getTime() < twoDaysAgo.getTime()) {
 			fillMissed($('.today').prev());
 			$('.didYouDoIt').html("You missed more than one day. You need to start over.");
-			$('#actions').hide();
+			$('.doTheThing').hide();
+			$('.didNotDoTheThing').hide();
 			$('.startOver').show();
 		};
 
