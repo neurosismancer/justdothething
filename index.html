@@ -17,6 +17,7 @@
 	</head>
 	<body>
 		<h1>Just Do The Thing</h1>
+		<a href="javascript:void(0);" id="optionsOpen">Options</a>
 		<section id="information">
 			<p class="streak"></p>
 		</section>
@@ -47,7 +48,8 @@
 			<button type="" onclick="setupToggle()">Cancel</button>
 		</section>
 
-		<nav>
+		<nav id="optionsNav">
+			<a href="javascript:void(0);" id="optionsClose">Close</a>
 			<ul id="options">
 				<li><a onclick="setupToggle()" href="javascript:void(0);" class="changeGoal">Change Goal</a></li>
 				<li><a onclick="globalReset()" href="javascript:void(0);">Reset All Progress</a></li>

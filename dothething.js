@@ -209,6 +209,7 @@ function didNotDoTheThing() {
 
 //resets everything, and forces you to pick a new goal
 function globalReset() {
+	$("#optionsNav").animate({width: 'toggle'}, 400);
 	if(confirm("This will reset all your progress. Are you sure you want to continue?")) {
 		clearStreak();
 		localStorage.removeItem("goal");
@@ -278,12 +279,13 @@ function clearStreak(){
 function setupToggle() {
 	$('#doOrDoNot').toggle();
 	$('#setup').toggle();
+	$('#optionsNav').animate({width: 'toggle'}, 400);
 }
 
 //FIXME: Drop this, or use it for a First Run deal
 function popUp(which) {
-	$('.fadeOver').fadeToggle(200);
-	$('.popOver').fadeToggle(200);
+	$('.fadeOver').fadeToggle(400);
+	$('.popOver').fadeToggle(400);
 }
 
 var main = function() {
@@ -332,6 +334,15 @@ var main = function() {
 	} else {
 		setupToggle();
 	};
+
+	$('#optionsOpen').click(function(){
+		$('#optionsNav').animate({width: 'toggle'}, 400);
+	});
+
+	$('#optionsClose').click(function(){
+		$('#optionsNav').animate({width: 'toggle'}, 400);
+	});
+
 
 	$(window).resize(function() {
 		setCalendarHeight();

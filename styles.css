@@ -152,6 +152,45 @@ button {
 	display: none;	
 }
 
+#optionsOpen {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	border: 1px solid #000;
+	padding: 4px 8px;
+	border-radius: 8px;
+}
+
+#optionsNav {
+	position: absolute;
+	display: none;
+	top: 0;
+	right: 0;
+	width: 33%;
+	height: 100%;
+	background-color: #666666;
+	padding-top: 42px;
+}
+
+#optionsNav a {
+	color: white;
+}
+
+#options li {
+	padding: .5em 1em;
+	border-bottom: 1px solid #fff;
+	font-size: 24px;
+}
+
+#optionsClose {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	border: 1px solid #fff;
+	padding: 4px 8px;
+	border-radius: 8px;
+}
+
  @media screen and (orientation:portrait) {
  	body {
  		margin-left: 0 !important;
@@ -175,7 +214,7 @@ button {
  	}
 
  	h1 {
- 		text-align: center !important;
+ 		/*text-align: center !important;*/
  		font-size: 1.6em !important;
  	}
 
@@ -186,4 +225,7 @@ button {
  	h3 {
  		font-size: 1.067em !important;
  	}
- }
+
+ 	#optionsNav {
+		width: 100% !important;
+	}
