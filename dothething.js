@@ -279,7 +279,7 @@ function clearStreak(){
 function setupToggle() {
 	$('#doOrDoNot').toggle();
 	$('#setup').toggle();
-	$('#optionsNav').animate({width: 'toggle'}, 400);
+	$('#optionsNav').hide();
 }
 
 //FIXME: Drop this, or use it for a First Run deal
