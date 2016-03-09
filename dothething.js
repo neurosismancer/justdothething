@@ -72,10 +72,16 @@ function changeGoal() {
 function updateGoalInfo() {
 	$('.goalAndStreak').text("Your Goal is: " + localStorage.getItem("goal"));
 	$('.goalStart').text('Goal started on: ' + localStorage.getItem("dateGoalStart"));
-	if(localStorage.getItem("dateLastDone")){
-		$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
+	if(streak == 1) {
+		$('.streak').html('Your Streak is: ' + streak + ' Day <br>');
 	} else {
-		$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed: Never </small>');
+		$('.streak').html('Your Streak is: ' + streak + ' Days <br>');
+	}
+
+	if(localStorage.getItem("dateLastDone")){
+		$('.streak').append('<small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
+	} else {
+		$('.streak').append('<small>Last Completed: Never </small>');
 	}
 	$('#actions').show();
 }
@@ -139,6 +145,22 @@ function setCalendarHeight() {
 	}
 }
 
+function updateStreakData(streak){
+	if(streak == 1) {
+		$('.streak').html('Your Streak is: ' + streak + ' Day <br>');
+	} else {
+		$('.streak').html('Your Streak is: ' + streak + ' Days <br>');
+	}
+
+	if(localStorage.getItem("dateLastDone")){
+		$('.streak').append('<small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
+	} else {
+		$('.streak').append('<small>Last Completed: Never </small>');
+	}
+
+	localStorage.setItem("yourStreak", streak.toString());
+}
+
 function doTheThing() {
 	var streakEnd = $('.today');
 	$('.today').removeClass('missed');
@@ -148,11 +170,9 @@ function doTheThing() {
 	localStorage.setItem("dateLastDone", todayDate);
 
 	streak++;
-	$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
+	updateStreakData(streak);
+
 	$('.didNotDoTheThing').html("<a onclick=\"didNotDoTheThing()\" href=\"javascript:void(0);\">No</a>");
-
-	localStorage.setItem("yourStreak", streak.toString());
-
 	$('.doTheThing').hide();
 	$('.didNotDoTheThing').show();
 	$('.startOver').hide();
@@ -168,8 +188,7 @@ function didYesterday() {
 	localStorage.setItem("dateLastDone", streakEnd);
 
 	streak++;
-	$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
-	localStorage.setItem("yourStreak", streak.toString());
+	updateStreakData(streak);
 
 	$('.missedADay').remove();
 	$('.didYouDoIt').show();
@@ -197,8 +216,7 @@ function didNotDoTheThing() {
 			localStorage.setItem("dateLastDone", lastDone);
 
 			streak--;
-			$('.streak').html("Your Streak is: " + streak + ' Days <br> \n <small>Last Completed on: ' + localStorage.getItem("dateLastDone") + '</small>');
-			localStorage.setItem("yourStreak", streak.toString());
+			updateStreakData(streak);
 
 			$('.doTheThing').show();
 		}
