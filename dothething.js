@@ -134,10 +134,10 @@ function setCalendarHeight() {
 
 	//Set calendar day cell height
 	if($('.calendar').children().length == 42) {
-		var dayHeight = ($('.calendar').height() / 6) - 30;
+		var dayHeight = ($('.calendar').height() / 6) - 38;
 		$('.calendar li').height(dayHeight + 'px');
 	} else if ($('.calendar').children().length == 35){
-		var dayHeight = ($('.calendar').height() / 5) - 30;
+		var dayHeight = ($('.calendar').height() / 5) - 34;
 		$('.calendar li').height(dayHeight + 'px');
 	} else if ($('.calendar').children().length == 28) {
 		var dayHeight = ($('.calendar').height() / 4) - 30;

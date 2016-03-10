@@ -73,11 +73,10 @@ h1 {
 	height: 14.2%;
 	width: 13.2%;
 	text-align: left;
-	margin: 5px;
+	margin: 3px;
 	padding: 10px;
 	outline: 1px solid black;
-	min-height: 44px;
-	box-sizing: border-box;
+	min-height: 22px;
 	font-size: 24px;
 }
 
@@ -193,7 +192,8 @@ button {
 
  @media screen and (orientation:portrait) {
  	body {
- 		margin-left: 0 !important;
+ 		margin: 0 auto !important;
+ 		width: 98%
  	}
  	#progress {
  		position: relative !important;
@@ -203,10 +203,15 @@ button {
 
  	.calendar {
  		height: 50% !important;
+ 		width: auto !important;
+ 		margin: 0 auto !important;
+ 		outline: 1px solid #f0f;
  	}
 
  	.calendar li {
  		min-height: 22px !important;
+ 		widows: 13.8%;
+ 		font-size: 16px;
  	}
 
  	.goalData {
@@ -215,7 +220,7 @@ button {
 
  	h1 {
  		/*text-align: center !important;*/
- 		font-size: 1.6em !important;
+ 		font-size: 1.4em !important;
  	}
 
  	h2 {
@@ -228,4 +233,10 @@ button {
 
  	#optionsNav {
 		width: 100% !important;
+	}
+
+	#optionsOpen, #optionsClose {
+		top: 4px !important;
+		right: 4px !important; 
+		margin-right: 0px !important;
 	}
