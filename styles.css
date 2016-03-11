@@ -190,10 +190,11 @@ button {
 	border-radius: 8px;
 }
 
- @media screen and (orientation:portrait) {
+
+@media only screen and (orientation:portrait) {
  	body {
  		margin: 0 auto !important;
- 		width: 98%
+ 		width: 100%
  	}
  	#progress {
  		position: relative !important;
@@ -203,14 +204,12 @@ button {
 
  	.calendar {
  		height: 50% !important;
- 		width: auto !important;
  		margin: 0 auto !important;
- 		outline: 1px solid #f0f;
  	}
 
  	.calendar li {
  		min-height: 22px !important;
- 		widows: 13.8%;
+ 		width: 12.4%;
  		font-size: 16px;
  	}
 
@@ -240,3 +239,15 @@ button {
 		right: 4px !important; 
 		margin-right: 0px !important;
 	}
+}
+
+@media only screen and (width: 320px) {
+	#calendar {
+		width: 320px !important;
+		background-color: #f0f !important;
+	}
+
+	#calendar li {
+		width: 40px !important;
+	}
+}
