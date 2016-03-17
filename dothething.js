@@ -241,7 +241,9 @@ function globalReset() {
 		$('.goalStart').html("Your start date will be today");
 		$('.streak').html("");
 
-		setupToggle();
+		$('#doOrDoNot').hide();
+		$('.startOver').hide();
+		$('#setup').show();
 	}
 }
 
