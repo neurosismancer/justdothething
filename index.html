@@ -1,42 +1,41 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>
-			Just Do the Thing - A Simple Goal Tracker
-		</title>
 
-		<!-- https://10up.github.io/sanitize.css/ -->
-		<link rel="stylesheet" href="https://rawgit.com/10up/sanitize.css/master/sanitize.css" type="text/css">
-		<link rel="stylesheet" href="styles.css" type="text/css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Just Do the Thing - A Simple Goal Tracker
+    </title>
+    <!-- https://10up.github.io/sanitize.css/ -->
+    <link rel="stylesheet" href="https://rawgit.com/10up/sanitize.css/master/sanitize.css" type="text/css">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://rawgit.com/WesleydeSouza/calendar-base/master/dist/calendar-base.min.js"></script>
+    <script src="./dothething.js"></script>
+</head>
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-		<script src="https://rawgit.com/WesleydeSouza/calendar-base/master/dist/calendar-base.min.js"></script>
-		<script src="./dothething.js"></script>
-	</head>
-	<body>
-		<h1>Just Do The Thing</h1>
-		<a href="javascript:void(0);" id="optionsOpen">Options</a>
-		<section id="information">
-			<p class="streak"></p>
-		</section>
-		
-		<section id="progress">
-			<hgroup class="goalData">
-				<h2 class="goalAndStreak">Please set a goal</h2>
-				<h3 class="goalStart">Your start date will be today</h3>
-			</hgroup>
-			<ul class="calendar">
-			</ul>
-		</section>
-
-		<section id="doOrDoNot">
-			<h4 class="didYouDoIt">Did you accomplish your goal today?</h4>
-			<ul id="actions">
-				<li class="doTheThing"><a onclick="doTheThing()" href="javascript:void(0);">Yes</a></li>
-				<li class="didNotDoTheThing"><a onclick="didNotDoTheThing()" href="javascript:void(0);">No
+<body>
+    <h1>Just Do The Thing</h1>
+    <a href="javascript:void(0);" id="optionsOpen">Options</a>
+    <section id="information">
+        <p class="streak"></p>
+    </section>
+    <section id="progress">
+        <hgroup class="goalData">
+            <h2 class="goalAndStreak">Please set a goal</h2>
+            <h3 class="goalStart">Your start date will be today</h3>
+        </hgroup>
+        <ul class="calendar">
+        </ul>
+    </section>
+    <section id="doOrDoNot">
+        <h4 class="didYouDoIt">Did you accomplish your goal today?</h4>
+        <ul id="actions">
+            <li class="doTheThing"><a onclick="doTheThing()" href="javascript:void(0);">Yes</a></li>
+            <li class="didNotDoTheThing"><a onclick="didNotDoTheThing()" href="javascript:void(0);">No
 				<li class="startOver"><a onclick="startOver()" href="javascript:void(0);">Start Over</a></li>
+<<<<<<< Updated upstream
 			</ul>
 			
 		</section>
@@ -47,13 +46,24 @@
 			<button type="" onclick="changeGoal()">Set New Goal</button>
 			<button type="" id="cancelGoal" onclick="setupToggle()">Cancel</button>
 		</section>
+=======
+        </ul>
+    </section>
+    <section id="setup">
+        <h4>Tip: Pick a goal that is positive and active.</h4>
+        <input class="newGoal" type="text" length="255" value="Accomplish Wonders.">
+        <br />
+        <button type="" onclick="changeGoal()">Set New Goal</button>
+        <button type="" onclick="setupToggle()">Cancel</button>
+    </section>
+    <nav id="optionsNav">
+        <a href="javascript:void(0);" id="optionsClose">Close</a>
+        <ul id="options">
+            <li><a onclick="setupToggle()" href="javascript:void(0);" class="changeGoal">Set New Goal</a></li>
+            <li><a onclick="globalReset()" href="javascript:void(0);">Reset All Progress</a></li>
+        </ul>
+    </nav>
+</body>
+>>>>>>> Stashed changes
 
-		<nav id="optionsNav">
-			<a href="javascript:void(0);" id="optionsClose">Close</a>
-			<ul id="options">
-				<li><a onclick="setupToggle()" href="javascript:void(0);" class="changeGoal">Set New Goal</a></li>
-				<li><a onclick="globalReset()" href="javascript:void(0);">Reset All Progress</a></li>
-			</ul>
-		</nav>
-	</body>
 </html>

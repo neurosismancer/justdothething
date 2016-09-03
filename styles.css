@@ -1,255 +1,247 @@
-html, body {
-	height: 100%;
-	padding: 0;
-	margin: 0;
+html,
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 body {
-	margin-left: 67% !important;
-	/*background-color: #336699;*/
-
-	font-family: Helvetica, Arial, sans-serif;
+    margin-left: 67% !important;
+    /*background-color: #336699;*/
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 h1 {
-	font-size: 2.4em;
+    font-size: 2.4em;
 }
 
 .completed {
-	background-color: green !important; 
+    background-color: green !important;
 }
 
 .missed {
-	background-color: red !important;
+    background-color: red !important;
 }
 
 .today {
-	outline: 3px solid yellow !important;
-	background-color: gray;
+    outline: 3px solid yellow !important;
+    background-color: gray;
 }
 
 .siblingMonth {
-	background-color: #CCCCCC;
+    background-color: #CCCCCC;
 }
 
 #progress {
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 66%;
-	height: 100%;
-	text-align: center;
-
-	/*background-color: #336699;*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 66%;
+    height: 100%;
+    text-align: center;
+    /*background-color: #336699;*/
 }
 
 #progress hgroup {
-	height: auto;
-	padding: 1% 0;
+    height: auto;
+    padding: 1% 0;
 }
 
 #progress h2 {
-	font-size: 1.8em;
+    font-size: 1.8em;
 }
 
 #progress h3 {
-	font-size: 1.6em;
+    font-size: 1.6em;
 }
 
 .calendar {
-	position: relative;
-	width: 100%;
-	height: auto;
-	overflow: auto;
-	list-style: none;
-	padding: 0 !important;
-	margin: 0 !important;
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    list-style: none;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .calendar li {
-	display: inline-block;
-	float: left;
-	height: 14.2%;
-	width: 13.2%;
-	text-align: left;
-	margin: 3px;
-	padding: 10px;
-	outline: 1px solid black;
-	min-height: 22px;
-	font-size: 24px;
+    display: inline-block;
+    float: left;
+    height: 14.2%;
+    width: 13.2%;
+    text-align: left;
+    margin: 3px;
+    padding: 10px;
+    outline: 1px solid black;
+    min-height: 22px;
+    font-size: 24px;
 }
 
 .goalStart {
-	text-align: center;
+    text-align: center;
 }
 
-#setup, .startOver, .warning {
-	display: none;
+#setup,
+.startOver,
+.warning {
+    display: none;
 }
 
-#doOrDoNot, #setup {
-	position: relative;
+#doOrDoNot,
+#setup {
+    position: relative;
 }
 
 #actions {
-	list-style: none;
-	overflow: auto;
-	padding: 2% 0;
+    list-style: none;
+    overflow: auto;
+    padding: 2% 0;
 }
 
 #actions li {
-	box-sizing: border-box;
-	display: inline-block;
-	text-align: center;
-	width: 48%;
-	border: 1px solid #000;
-	border-radius: 8px;
-	font-size: 24px;
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+    width: 48%;
+    border: 1px solid #000;
+    border-radius: 8px;
+    font-size: 24px;
 }
 
 #actions li a {
-	display: block;
-	padding: 20px 0;
+    display: block;
+    padding: 20px 0;
 }
 
 .newGoal {
-	border: 1px solid #000;
-	margin: 1em 0;
-	padding: 4px 8px;
-	width: 90%;
+    border: 1px solid #000;
+    margin: 1em 0;
+    padding: 4px 8px;
+    width: 90%;
 }
 
 button {
-	border: 1px solid #000;
-	border-radius: 8px;
-	padding: 8px;
-	font-size: 16px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 16px;
 }
 
 .fadeOver {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	background-color:rgba(0, 0, 0, 0.5);
-	z-index: 1;
-	display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: none;
 }
 
 .popOver {
-	position: absolute;
-	top: 20%;
-	left: 20%;
-	width: 50%;
-	height: 50%;
-	z-index: 2;
-	background-color: #669900;
-	border-radius: 10px;
-
-	display: none;	
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 50%;
+    height: 50%;
+    z-index: 2;
+    background-color: #669900;
+    border-radius: 10px;
+    display: none;
 }
 
 #optionsOpen {
-	position: absolute;
-	top: 16px;
-	right: 16px;
-	border: 1px solid #000;
-	padding: 4px 8px;
-	border-radius: 8px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: 1px solid #000;
+    padding: 4px 8px;
+    border-radius: 8px;
 }
 
 #optionsNav {
-	position: absolute;
-	display: none;
-	top: 0;
-	right: 0;
-	width: 33%;
-	height: 100%;
-	background-color: #666666;
-	padding-top: 42px;
+    position: absolute;
+    display: none;
+    top: 0;
+    right: 0;
+    width: 33%;
+    height: 100%;
+    background-color: #666666;
+    padding-top: 42px;
 }
 
 #optionsNav a {
-	color: white;
+    color: white;
 }
 
 #options li {
-	padding: .5em 1em;
-	border-bottom: 1px solid #fff;
-	font-size: 24px;
+    padding: .5em 1em;
+    border-bottom: 1px solid #fff;
+    font-size: 24px;
 }
 
 #optionsClose {
-	position: absolute;
-	top: 16px;
-	right: 16px;
-	border: 1px solid #fff;
-	padding: 4px 8px;
-	border-radius: 8px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: 1px solid #fff;
+    padding: 4px 8px;
+    border-radius: 8px;
 }
 
-
 @media only screen and (orientation:portrait) {
- 	body {
- 		margin: 0 auto !important;
- 		width: 100%
- 	}
- 	#progress {
- 		position: relative !important;
- 		width: 100% !important;
- 		height: auto !important;
- 	}
-
- 	.calendar {
- 		height: 50% !important;
- 		margin: 0 auto !important;
- 	}
-
- 	.calendar li {
- 		min-height: 22px !important;
- 		width: 12.4% !important;
- 		height: 12.4% !important;
- 		padding: 5px !important;
- 		font-size: 16px;
- 	}
-
- 	.goalData {
- 		text-align: center !important;
- 	}
-
- 	h1 {
- 		/*text-align: center !important;*/
- 		font-size: 1.4em !important;
- 	}
-
- 	h2 {
- 		font-size: 1.2em !important;
- 	}
-
- 	h3 {
- 		font-size: 1.067em !important;
- 	}
-
- 	#optionsNav {
-		width: 100% !important;
-	}
-
-	#optionsOpen, #optionsClose {
-		top: 4px !important;
-		right: 4px !important; 
-		margin-right: 0px !important;
-	}
+    body {
+        margin: 0 auto !important;
+        width: 100%
+    }
+    #progress {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+    .calendar {
+        height: 50% !important;
+        margin: 0 auto !important;
+    }
+    .calendar li {
+        min-height: 22px !important;
+        width: 12.4% !important;
+        height: 12.4% !important;
+        padding: 5px !important;
+        font-size: 16px;
+    }
+    .goalData {
+        text-align: center !important;
+    }
+    h1 {
+        /*text-align: center !important;*/
+        font-size: 1.4em !important;
+    }
+    h2 {
+        font-size: 1.2em !important;
+    }
+    h3 {
+        font-size: 1.067em !important;
+    }
+    #optionsNav {
+        width: 100% !important;
+    }
+    #optionsOpen,
+    #optionsClose {
+        top: 4px !important;
+        right: 4px !important;
+        margin-right: 0px !important;
+    }
 }
 
 @media only screen and (width: 320px) {
-	#calendar {
-		width: 320px !important;
-		background-color: #f0f !important;
-	}
-
-	#calendar li {
-		width: 40px !important;
-	}
+    #calendar {
+        width: 320px !important;
+        background-color: #f0f !important;
+    }
+    #calendar li {
+        width: 40px !important;
+    }
 }
